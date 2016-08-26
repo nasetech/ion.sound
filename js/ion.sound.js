@@ -254,8 +254,8 @@
         },
 
         createUrl: function () {
-            var no_cache = new Date().valueOf();
-            this.url = this.options.path + encodeURIComponent(this.options.name) + "." + this.options.supported[this.ext] + "?" + no_cache;
+            //var no_cache = new Date().valueOf();
+            this.url = this.options.path + encodeURIComponent(this.options.name) + "." + this.options.supported[this.ext];
         },
 
         load: function () {
