@@ -103,7 +103,6 @@
 
     ion.sound = function (options) {
         extend(options, settings);
-
         settings.path = settings.path || "";
         settings.volume = settings.volume || 1;
         settings.preload = settings.preload || false;
@@ -113,6 +112,7 @@
         settings.scope = settings.scope || null;
         settings.ready_callback = settings.ready_callback || null;
         settings.ended_callback = settings.ended_callback || null;
+        settings.hasCache = settings.hasCache || false;
 
         sounds_num = settings.sounds.length;
 
@@ -254,8 +254,13 @@
         },
 
         createUrl: function () {
-            //var no_cache = new Date().valueOf();
-            this.url = this.options.path + encodeURIComponent(this.options.name) + "." + this.options.supported[this.ext];
+            var that = this;
+            if(that.options.hasCache){
+              var no_cache = new Date().valueOf();
+              this.url = this.options.path + encodeURIComponent(this.options.name) + "." + this.options.supported[this.ext] + '?' + no_cache;
+            }else{
+              this.url = this.options.path + encodeURIComponent(this.options.name) + "." + this.options.supported[this.ext];
+            }
         },
 
         load: function () {
@@ -405,7 +410,7 @@
 
             } else {
                 if(this.streams[0]){
-                    this.streams[0].stop();   
+                  this.streams[0].stop();
                 }
             }
         },
@@ -874,7 +879,7 @@
 
         this._scope = options._scope;
         this._ready = options._ready;
-
+        this.hasCache = options.hasCache || false;
         this.setLoop(options);
 
         this.sound = null;
@@ -914,8 +919,12 @@
         },
 
         createUrl: function () {
-            //var rand = new Date().valueOf();
-            this.url = this.path + encodeURIComponent(this.name) + "." + settings.supported[0];
+            if(this.hasCache){
+              var rand = new Date().valueOf();
+              this.url = this.path + encodeURIComponent(this.name) + "." + settings.supported[0] + '?' + rand;
+            }else{
+              this.url = this.path + encodeURIComponent(this.name) + '.' + settings.supported[0];
+            }
         },
 
         can_play_through: function () {
