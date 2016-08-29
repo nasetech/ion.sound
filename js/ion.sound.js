@@ -912,8 +912,8 @@
         },
 
         createUrl: function () {
-            var rand = new Date().valueOf();
-            this.url = this.path + encodeURIComponent(this.name) + "." + settings.supported[0] + "?" + rand;
+            //var rand = new Date().valueOf();
+            this.url = this.path + encodeURIComponent(this.name) + "." + settings.supported[0];
         },
 
         can_play_through: function () {
