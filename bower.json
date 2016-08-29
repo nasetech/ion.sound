@@ -12,7 +12,7 @@
     "description": "JavaScript plugin for playing sounds and music on websites",
     "repository": {
         "type": "git",
-        "url": "git://github.com/IonDen/ion.sound.git"
+        "url": "git://github.com/nasetech/ion.sound"
     },
     "main": [
         "js/ion.sound.js"
