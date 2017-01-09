@@ -811,7 +811,7 @@
                 }
 
             } else {
-                this.streams[0].stop();
+                this.streams[0] && this.streams[0].stop();
             }
         },
 
